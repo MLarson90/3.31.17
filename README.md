@@ -1,32 +1,46 @@
-# _PHP Project Template_
+# _Hair Stylist_
 
-#### _Starting template for php projects, March, 2017_
+#### _An app hair stylist, March 31, 2017_
 
-#### By _**Rob McKenzie**_
+#### By _**Max Larson**_
 
 ## Description
 
-_Starting files and directory structure for php projects. See the composer.json file for project dependencies._
+_This is a program that will keep track of a hair stylist clients_
 
 ## Setup/Installation Requirements
 
 * _Download or clone project files_
-* _Run Composer Install or Composer Update in terminal_
-* _Update Class names and Test names as appropriate_
+* _Run Composer Install terminal_
+* _3.31.17->web in MAMP_
+* https://github.com/MLarson90/3.31.17.git
 
-## Specs (include project specs below)
-* _spec 1_
-* _spec 2_
-* _spec 3_
-* _..._
+## Specs
+* _This program will get all arguments for stylist_
+* _This program will set all arguments for stylist_
+* _This program will save all arguments for stylist_
+* _This program will get all instances of stylist_
+* _This program will delete all instances of stylist_
+* _This program will find a stylist_
+* _This program will allow admin to update a stylist_
+* _This program will allow admin to delete a stylist_
+* _This program will do all those things for clients_
+
+## MySQL commands
+
+* _/Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot_
+* _CREATE DATABASE hair_saloon;_
+* _USE hair_saloon;_
+* _CREATE TABLE stylist(first VARCHAR(255), last VARCHAR(255), years INT, id serial PRIMARY KEY);_
+* _CREATE TABLE client(first VARCHAR(255), last VARCHAR(255), id serial PRIMARY KEY);_
 
 ## Known Bugs
 
-_No known bugs,_
+_This program has so few bugs it may as well be space_
 
 ## Support and contact details
 
-_If you run into any issues or have questions, ideas or concerns, please contact Rob McKenzie at mckenro@gmail.com_
+_If you run into any issues or have questions, please contact Rob at 1-800-TEAM-ROB_
 
 ## Technologies Used
 * _Bootstrap 3.3.7_
@@ -37,6 +51,6 @@ _If you run into any issues or have questions, ideas or concerns, please contact
 
 ### License
 
-*This project is licensed under the MIT license*
+*This project is licensed under Max Corp.*
 
-Copyright (c) 2017 **_Rob McKenzie_**
+Copyright (c) 2017 **_Max Larson_**
