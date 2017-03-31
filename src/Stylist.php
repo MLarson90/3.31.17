@@ -6,7 +6,7 @@
       private $years;
       private $id;
 
-      function __construct($first, $last, $years, $id = null)
+      function __construct($first, $last, $years, $id=null)
       {
         $this->first = $first;
         $this->last = $last;
@@ -29,6 +29,7 @@
         {
           $executed = $GLOBALS['DB']->exec("INSERT INTO stylist (first, last, years) VALUES ('{$this->getFirst()}', '{$this->getLast()}', {$this->getYears()});");
           if($executed) {
+            $this->id = $GLOBALS['DB']->lastInsertId();
             return true;
           }else {
             return false;
@@ -42,7 +43,8 @@
             $first = $stylist['first'];
             $last = $stylist['last'];
             $years = $stylist['years'];
-            $new_stylist= new Stylist($first,$last,$years);
+            $id = $stylist['id'];
+            $new_stylist= new Stylist($first,$last,$years, $id);
             array_push($stylists, $new_stylist);
           }
           return $stylists;
@@ -55,6 +57,22 @@
             }else{
               return false;
             }
+        }
+        static function find($search_last)
+        {
+          $returned_stylist= $GLOBALS['DB']->prepare("SELECT * FROM stylist WHERE last = :id");
+          $returned_stylist->bindParam(':id', $search_last, PDO::PARAM_STR);
+          $returned_stylist->execute();
+          foreach($returned_stylist as $stylist){
+            $first = $stylist['first'];
+            $last = $stylist['last'];
+            $years = $stylist['years'];
+            $id = $stylist['id'];
+            if($last == $search_last){
+            $new_stylist= new Stylist($first,$last,$years, $id);
+            }
+          }
+          return $new_stylist;
         }
     }
 ?>

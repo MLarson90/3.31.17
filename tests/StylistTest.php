@@ -48,8 +48,17 @@
             $test_stylist = new Stylist("Barb", "Sanders", 3);
             $test_stylist->save();
             $result = $test_stylist->getId();
-            var_dump($result);
             $this->assertTrue(is_numeric($result));
+          }
+          function test_find()
+          {
+            $test_stylist = new Stylist("Barb", "Sanders", 3);
+            $test_stylist->save();
+            $test_stylist2 = new Stylist("Sandy", "Barbers", 2);
+            $test_stylist2->save();
+            $id = $test_stylist->getLast();
+            $result= Stylist::find($id);
+            $this-assertEquals($test_stylist, $result);
           }
     }
 
