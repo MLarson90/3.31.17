@@ -60,6 +60,16 @@
             $result= Client::findStylist($id);
             $this->assertEquals([$test_client], $result);
           }
+          function test_find_by_id()
+          {
+            $test_client = new Client("Cindy", "Johnson", 3);
+            $test_client->save();
+            $test_client2 = new Client("Claire", "Durpenfurf", 2);
+            $test_client2->save();
+            $id= $test_client->getId();
+            $result= Client::find($id);
+            $this->assertEquals($test_client, $result);
+          }
           function test_update()
           {
             $test_client = new Client("Cindy", "Johnson", 3);

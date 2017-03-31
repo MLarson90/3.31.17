@@ -3,22 +3,21 @@
 <h2>Clients</h2>
   {% for beccys in beccy %}
   <p> Name: {{ beccys.getFirst }} {{ beccys.getLast }}<p>
-  <p><a href="/clients/{{ sarah }}/edit">Edit {{beccys.getFirst}}</a></p>
+  <p><a href="/clients/{{ beccys.getId }}/edit">Edit {{beccys.getFirst}}</a></p>
   {% endfor %}
-
-  <h4>Add Client</h4>
-    <form action="/clients/{{ sarah }}" method="post">
-      <div class = "row">
-        <label for="first">First Name</label>
-        <input type='first' name="first" id='first' required>
-      </div>
-      <div class = "row">
-        <label for="last">Last Name</label>
-        <input type='last' name="last" id='last' required>
-      </div>
-      <button name="stylist_id" value="{{ sarah }}" type="submit">Add Client</button>
-    </form>
     {% else %}
     <p>There seems to be no clients</p>
     {% endif %}
+    <h4>Add Client<h4>
+      <form action="/clients/{{ sarah }}" method="post">
+        <div class = "row">
+          <label for="first">First Name</label>
+          <input type='first' name="first" id='first' required>
+        </div>
+        <div class = "row">
+          <label for="last">Last Name</label>
+          <input type='last' name="last" id='last' required>
+        </div>
+        <button name="stylist_id" value="{{ sarah }}" type="submit">Add Client</button>
+      </form>
 {% include "bottom.html.twig" %}

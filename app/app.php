@@ -17,7 +17,7 @@
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views'
-));
+    ));
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
 
@@ -32,9 +32,24 @@
       $stylist = Stylist::findId($id);
       return $app['twig']->render('clients.html.twig', array("beccy" => $clients, 'sarah' => $stylist));
     });
-    $app->get("/clients{id}/edit", function($id) use ($app){
+    $app->get("/clients/{id}/edit", function($id) use ($app){
       $client = Client::find($id);
       return $app['twig']->render("clients_edit.html.twig", array('client' =>$client));
+    });
+    $app->patch("/clients/{id}", function($id) use ($app){
+      $first = $_POST['first'];
+      $last = $_POST['last'];
+      $client = Client::find($id);
+      $client->update($first);
+      $client->updatelast($last);
+      $stylist = Stylist::findId($id);
+      $clients = Client::findStylist($id);
+      return $app['twig']->render('confirm.html.twig');
+    });
+    $app->delete("/clients/{id}", function($id) use ($app){
+      $client = Client::find($id);
+      $client->deleteClient();
+      return $app['twig']->render('confirm.html.twig');
     });
     $app->post("/stylist", function() use ($app){
       $first = $_POST['first'];
@@ -52,7 +67,7 @@
       $stylist = Stylist::findId($id);
       $clients = Client::findStylist($id);
       $new_client->save();
-      return $app['twig']->render('clients.html.twig', array("beccy" => $clients, 'sarah' => $stylist));
+      return $app['twig']->render('confirm.html.twig', array("beccy" => $clients, 'sarah' => $stylist));
     });
 
     return $app;

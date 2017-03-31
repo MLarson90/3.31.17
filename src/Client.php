@@ -89,7 +89,6 @@
             }
             static function find($search_id)
             {
-              $foundClient = array();
               $returned_client= $GLOBALS['DB']->prepare("SELECT * FROM client WHERE id = :id");
               $returned_client->bindParam(':id', $search_id, PDO::PARAM_STR);
               $returned_client->execute();
@@ -100,7 +99,7 @@
                 $id = $client['id'];
                 if($id == $search_id){
                   $newClient = new Client($first, $last, $stylist_id, $id);
-                array_push($foundClient, $newClient);
+                    return $newClient;
                 }
               }
             }
@@ -109,6 +108,16 @@
               $executed = $GLOBALS['DB']->exec("UPDATE client SET first = '{$new_name}' WHERE id = {$this->getId()};");
               if($executed){
                 $this->setFirst($new_name);
+                return true;
+              }else{
+                return false;
+              }
+            }
+            function updatelast($new_name)
+            {
+              $executed = $GLOBALS['DB']->exec("UPDATE client SET last = '{$new_name}' WHERE id = {$this->getId()};");
+              if($executed){
+                $this->setLast($new_name);
                 return true;
               }else{
                 return false;
