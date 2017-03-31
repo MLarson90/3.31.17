@@ -25,6 +25,15 @@
         function getId(){
           return $this->id;
         }
+        function setFirst($new_name){
+          $this->first = (string) $new_name;
+        }
+        function setLast($new_name){
+          $this->last = (string) $new_name;
+        }
+        function setYears($new_name){
+          $this->years = (int) $new_name;
+        }
         function save()
         {
           $executed = $GLOBALS['DB']->exec("INSERT INTO stylist (first, last, years) VALUES ('{$this->getFirst()}', '{$this->getLast()}', {$this->getYears()});");
@@ -73,6 +82,25 @@
             }
           }
           return $new_stylist;
+        }
+        function update($new_name)
+        {
+          $executed = $GLOBALS['DB']->exec("UPDATE stylist SET first = '{$new_name}' WHERE id = {$this->getId()};");
+          if($executed){
+            $this->setFirst($new_name);
+            return true;
+          }else{
+            return false;
+          }
+        }
+        function deleteStylist()
+        {
+          $executed= $GLOBALS['DB']->exec("DELETE FROM stylist Where id={$this->getId()};");
+          if ($executed){
+            return true;
+          }else{
+            return false;
+          }
         }
     }
 ?>

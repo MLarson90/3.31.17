@@ -5,6 +5,7 @@
    */
 
    require_once "src/Stylist.php";
+   require_once "src/Client.php";
 
    $server = 'mysql:host=localhost:8889;dbname=hair_saloon_test';
    $username = 'root';
@@ -58,7 +59,25 @@
             $test_stylist2->save();
             $id = $test_stylist->getLast();
             $result= Stylist::find($id);
-            $this-assertEquals($test_stylist, $result);
+            $this->assertEquals($test_stylist, $result);
+          }
+          function test_update()
+          {
+            $test_stylist = new Stylist("Barb", "Sanders", 3);
+            $test_stylist->save();
+            $new_name = "Laura";
+            $test_stylist->update($new_name);
+            $result = $test_stylist->getFirst();
+            $this->assertEquals("Laura", $result);
+          }
+          function test_deleteStylist()
+          {
+            $test_stylist = new Stylist("Barb", "Sanders", 3);
+            $test_stylist->save();
+            $test_stylist2 = new Stylist("Sandy", "Barbers", 2);
+            $test_stylist2->save();
+            $test_stylist->deleteStylist();
+            $this->assertEquals([$test_stylist2], Stylist::getAll());
           }
     }
 
