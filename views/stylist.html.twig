@@ -5,6 +5,7 @@
         <p> Name: {{ steves.getFirst }} {{ steves.getLast }}<p>
         <p> Experience: {{ steves.getYears }} years<p>
         <p><a href="/clients/{{ steves.getId }}">See Clients</a><p>
+        <p><a href="/stylist/{{ steves.getId }}/edit">Edit {{steves.getFirst}}'s profile</a></p>
         {% endfor %}
       {% endif %}
 {% include "bottom.html.twig" %}

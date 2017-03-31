@@ -57,7 +57,7 @@
             $test_stylist->save();
             $test_stylist2 = new Stylist("Sandy", "Barbers", 2);
             $test_stylist2->save();
-            $id = $test_stylist->getLast();
+            $id = $test_stylist->getId();
             $result= Stylist::find($id);
             $this->assertEquals($test_stylist, $result);
           }
@@ -65,10 +65,10 @@
           {
             $test_stylist = new Stylist("Barb", "Sanders", 3);
             $test_stylist->save();
-            $new_name = "Laura";
-            $test_stylist->update($new_name);
-            $result = $test_stylist->getFirst();
-            $this->assertEquals("Laura", $result);
+            $new_years = 4;
+            $test_stylist->update($new_years);
+            $result = $test_stylist->getYears();
+            $this->assertEquals(4, $result);
           }
           function test_deleteStylist()
           {

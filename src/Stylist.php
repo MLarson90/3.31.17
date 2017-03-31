@@ -67,21 +67,21 @@
               return false;
             }
         }
-        static function find($search_last)
+        static function find($search_id)
         {
-          $returned_stylist= $GLOBALS['DB']->prepare("SELECT * FROM stylist WHERE last = :id");
-          $returned_stylist->bindParam(':id', $search_last, PDO::PARAM_STR);
+          $returned_stylist= $GLOBALS['DB']->prepare("SELECT * FROM stylist WHERE id = :id");
+          $returned_stylist->bindParam(':id', $search_id, PDO::PARAM_STR);
           $returned_stylist->execute();
           foreach($returned_stylist as $stylist){
             $first = $stylist['first'];
             $last = $stylist['last'];
             $years = $stylist['years'];
             $id = $stylist['id'];
-            if($last == $search_last){
+            if($id == $search_id){
             $new_stylist= new Stylist($first,$last,$years, $id);
+            return $new_stylist;
             }
           }
-          return $new_stylist;
         }
         static function findId($search_id)
         {
@@ -100,9 +100,9 @@
         }
         function update($new_name)
         {
-          $executed = $GLOBALS['DB']->exec("UPDATE stylist SET first = '{$new_name}' WHERE id = {$this->getId()};");
+          $executed = $GLOBALS['DB']->exec("UPDATE stylist SET years = '{$new_name}' WHERE id = {$this->getId()};");
           if($executed){
-            $this->setFirst($new_name);
+            $this->setYears($new_name);
             return true;
           }else{
             return false;

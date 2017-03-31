@@ -42,8 +42,6 @@
       $client = Client::find($id);
       $client->update($first);
       $client->updatelast($last);
-      $stylist = Stylist::findId($id);
-      $clients = Client::findStylist($id);
       return $app['twig']->render('confirm.html.twig');
     });
     $app->delete("/clients/{id}", function($id) use ($app){
@@ -68,6 +66,22 @@
       $clients = Client::findStylist($id);
       $new_client->save();
       return $app['twig']->render('confirm.html.twig', array("beccy" => $clients, 'sarah' => $stylist));
+    });
+    $app->get("/stylist/{id}/edit", function($id) use ($app){
+      $stylist = Stylist::find($id);
+      var_dump($stylist);
+      return $app['twig']->render("stylist_edit.html.twig", array('stylist' =>$stylist));
+    });
+    $app->patch("/stylist/{id}", function($id) use ($app){
+      $years = $_POST['years'];
+      $stylist = Stylist::find($id);
+      $stylist->update($years);
+      return $app['twig']->render('confirm.html.twig');
+    });
+    $app->delete("/stylist/{id}", function($id) use ($app){
+      $stylist = Stylist::find($id);
+      $stylist->deleteStylist();
+      return $app['twig']->render('confirm.html.twig');
     });
 
     return $app;

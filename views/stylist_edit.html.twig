@@ -1,0 +1,16 @@
+{% include "topper.html.twig" %}
+<form action="/stylist/{{ stylist.getId }}" method="post">
+<input name="_method" type="hidden" value="patch">
+
+<label for="years">Update years experience</label>
+<input id="years" name="years" type="text">
+
+<button type="submit">Update</button>
+</form>
+
+<form action="/stylist/{{ stylist.getId }}" method="post">
+<input name="_method" type="hidden" value="delete">
+
+<button type="submit">Delete this Stylist</button>
+</form>
+{% include "bottom.html.twig" %}
