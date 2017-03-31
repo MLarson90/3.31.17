@@ -18,6 +18,13 @@
 
     $app->get("/", function() use ($app) {
     return $app['twig']->render('index.html.twig');
+
+    $app->get("/stylist", function() use ($app) {
+      return $app['twig']->render('stylist.html.twig');
+    });
+    $app->post("/stylist", function() use ($app){
+      return $app['twig']->render('stylist.html.twig');
+    });
 });
     return $app;
  ?>

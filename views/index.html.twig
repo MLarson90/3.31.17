@@ -1,16 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <script src="../scripts/jquery-3.2.0.js"></script>
-    <script src="../scripts/bootstrap.js"></script>
-    <script src="../scripts/scripts.js"></script>
-    <link href="../css/bootstrap.css" type="text/css" rel="stylesheet">
-    <link href="../css/styles.css" type="text/css" rel="stylesheet">
-    <title>Project Title</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Project Title</h1>
-    </div>
-  </body>
-</html>
+{% include "topper.html.twig" %}
+      <h1>Gary's Fairly Hairy Salon</h1>
+      <h3> Add new stylist or <a href="/stylist">See Stylist</a></h3>
+
+      <form action="/stylists" method="post">
+        <div class = "row">
+          <label for="first">First Name</label>
+          <input type='first' name="first" id='first'>
+        </div>
+        <div class = "row">
+          <label for="last">Last Name</label>
+          <input type='last' name="last" id='last'>
+        </div>
+        <div class = "row">
+          <label for="years">Years Working</label>
+          <input type='text' name="years" id='years'>
+        </div>
+        <button type="submit">Add Stylist</button>
+      </form>
+
+
+{% include "bottom.html.twig" %}

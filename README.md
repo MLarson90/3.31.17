@@ -32,7 +32,7 @@ _This is a program that will keep track of a hair stylist clients_
 * _CREATE DATABASE hair_saloon;_
 * _USE hair_saloon;_
 * _CREATE TABLE stylist(first VARCHAR(255), last VARCHAR(255), years INT, id serial PRIMARY KEY);_
-* _CREATE TABLE client(first VARCHAR(255), last VARCHAR(255), id serial PRIMARY KEY);_
+* _CREATE TABLE client(first VARCHAR(255), last VARCHAR(255), stylist_id INT, id serial PRIMARY KEY);_
 
 ## Known Bugs
 
