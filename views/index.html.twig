@@ -2,18 +2,18 @@
       <h1>Gary's Fairly Hairy Salon</h1>
       <h3> Add new stylist or <a href="/stylist">See Stylist</a></h3>
 
-      <form action="/stylists" method="post">
+      <form action="/stylist" method="post">
         <div class = "row">
           <label for="first">First Name</label>
-          <input type='first' name="first" id='first'>
+          <input type='first' name="first" id='first' required>
         </div>
         <div class = "row">
           <label for="last">Last Name</label>
-          <input type='last' name="last" id='last'>
+          <input type='last' name="last" id='last' required>
         </div>
         <div class = "row">
           <label for="years">Years Working</label>
-          <input type='text' name="years" id='years'>
+          <input type='text' name="years" id='years' required>
         </div>
         <button type="submit">Add Stylist</button>
       </form>

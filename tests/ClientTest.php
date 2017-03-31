@@ -57,8 +57,8 @@
             $test_client2 = new Client("Claire", "Durpenfurf", 2);
             $test_client2->save();
             $id = $test_client->getStylistId();
-            $result= Client::find($id);
-            $this->assertEquals($test_client, $result);
+            $result= Client::findStylist($id);
+            $this->assertEquals([$test_client], $result);
           }
           function test_update()
           {

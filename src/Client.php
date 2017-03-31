@@ -69,8 +69,9 @@
                   return false;
                 }
             }
-            static function find($search_stylist_id)
+            static function findStylist($search_stylist_id)
             {
+              $new_clients = array();
               $returned_client= $GLOBALS['DB']->prepare("SELECT * FROM client WHERE stylist_id = :id");
               $returned_client->bindParam(':id', $search_stylist_id, PDO::PARAM_STR);
               $returned_client->execute();
@@ -81,9 +82,27 @@
                 $id = $client['id'];
                 if($stylist_id == $search_stylist_id){
                 $new_client= new Client($first,$last,$stylist_id, $id);
+                array_push($new_clients,$new_client);
                 }
               }
-              return $new_client;
+              return $new_clients;
+            }
+            static function find($search_id)
+            {
+              $foundClient = array();
+              $returned_client= $GLOBALS['DB']->prepare("SELECT * FROM client WHERE id = :id");
+              $returned_client->bindParam(':id', $search_id, PDO::PARAM_STR);
+              $returned_client->execute();
+              foreach($returned_client as $client){
+                $first = $client['first'];
+                $last = $client['last'];
+                $stylist_id = $client['stylist_id'];
+                $id = $client['id'];
+                if($id == $search_id){
+                  $newClient = new Client($first, $last, $stylist_id, $id);
+                array_push($foundClient, $newClient);
+                }
+              }
             }
             function update($new_name)
             {

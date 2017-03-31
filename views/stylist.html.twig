@@ -1,4 +1,10 @@
 {% include "topper.html.twig" %}
-
-      <p>sucker mcs</p>
+      {% if steve is not empty %}
+      <h2>Stylist</h2>
+        {% for steves in steve %}
+        <p> Name: {{ steves.getFirst }} {{ steves.getLast }}<p>
+        <p> Experience: {{ steves.getYears }} years<p>
+        <p><a href="/clients/{{ steves.getId }}">See Clients</a><p>
+        {% endfor %}
+      {% endif %}
 {% include "bottom.html.twig" %}

@@ -23,7 +23,7 @@
           return $this->years;
         }
         function getId(){
-          return $this->id;
+          return (INT)$this->id;
         }
         function setFirst($new_name){
           $this->first = (string) $new_name;
@@ -82,6 +82,21 @@
             }
           }
           return $new_stylist;
+        }
+        static function findId($search_id)
+        {
+          $returned_stylist= $GLOBALS['DB']->prepare("SELECT * FROM stylist WHERE id = :id");
+          $returned_stylist->bindParam(':id', $search_id, PDO::PARAM_STR);
+          $returned_stylist->execute();
+          foreach($returned_stylist as $stylist){
+            $first = $stylist['first'];
+            $last = $stylist['last'];
+            $years = $stylist['years'];
+            $id = $stylist['id'];
+            if($id == $search_id){
+            return $id;
+            }
+          }
         }
         function update($new_name)
         {
